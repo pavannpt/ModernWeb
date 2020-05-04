@@ -1,0 +1,11 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton type="button" label="PRIME" icon="pi pi-plus" [routerLink]="['prime']"></button>
+    </div>
+
+    <div class="ui-toolbar-group-right">
+        <!-- <button pButton type="button" label="Login" *ngIf="!loggedIn" (click)="login()" icon="pi pi-sign-in"></button>  -->
+        <button pButton type="button" label="Logout" *ngIf="loggedIn" (click)="logout()"
+            icon="pi pi-power-off"></button>
+    </div>
+</p-toolbar>

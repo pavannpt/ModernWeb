@@ -1,0 +1,7 @@
+<common-header [loggedIn]="loggedIn" (LogoutEvent)="onLoggedOut"></common-header>
+<div class="container" *ngIf="loggedIn">
+  <router-outlet></router-outlet>
+</div>
+<div class="container" *ngIf="!loggedIn">
+  <app-login  (LogInEvent)="onLoggedIn()" (LogOutEvent)="onLoggedOut()"></app-login>
+</div>
