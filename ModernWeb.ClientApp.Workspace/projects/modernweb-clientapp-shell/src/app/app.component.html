@@ -1,0 +1,8 @@
+<div>
+  <common-header (onLogout)="onLoggedOut()" [showLogout]="hideLogin"></common-header>
+</div>
+
+<div class="container containerBody">
+  <router-outlet></router-outlet>
+  <!-- <app-login (LogInEvent)="onLoggedIn()" (LogOutEvent)="onLoggedOut()"></app-login> -->
+</div>

@@ -1,0 +1,215 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "modernweb-clientapp-shell": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/modernweb-clientapp-shell",
+      "sourceRoot": "projects/modernweb-clientapp-shell/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/modernweb-clientapp-shell",
+            "index": "projects/modernweb-clientapp-shell/src/index.html",
+            "main": "projects/modernweb-clientapp-shell/src/main.ts",
+            "polyfills": "projects/modernweb-clientapp-shell/src/polyfills.ts",
+            "tsConfig": "projects/modernweb-clientapp-shell/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/modernweb-clientapp-shell/src/favicon.ico",
+              "projects/modernweb-clientapp-shell/src/assets"
+            ],
+            "styles": [
+              "projects/modernweb-clientapp-shell/src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-colored/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/modernweb-clientapp-shell/src/environments/environment.ts",
+                  "with": "projects/modernweb-clientapp-shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "modernweb-clientapp-shell:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "modernweb-clientapp-shell:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "modernweb-clientapp-shell:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modernweb-clientapp-shell/src/test.ts",
+            "polyfills": "projects/modernweb-clientapp-shell/src/polyfills.ts",
+            "tsConfig": "projects/modernweb-clientapp-shell/tsconfig.spec.json",
+            "karmaConfig": "projects/modernweb-clientapp-shell/karma.conf.js",
+            "assets": [
+              "projects/modernweb-clientapp-shell/src/favicon.ico",
+              "projects/modernweb-clientapp-shell/src/assets"
+            ],
+            "styles": [
+              "projects/modernweb-clientapp-shell/src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-colored/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modernweb-clientapp-shell/tsconfig.app.json",
+              "projects/modernweb-clientapp-shell/tsconfig.spec.json",
+              "projects/modernweb-clientapp-shell/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/modernweb-clientapp-shell/e2e/protractor.conf.js",
+            "devServerTarget": "modernweb-clientapp-shell:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "modernweb-clientapp-shell:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "modernweb-common-lib": {
+      "projectType": "library",
+      "root": "projects/modernweb-common-lib",
+      "sourceRoot": "projects/modernweb-common-lib/src",
+      "prefix": "common",
+      "schematics": {                           
+        "@schematics/angular:component": {      
+          "styleext": "scss"                    
+        }                                       
+      },          
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/modernweb-common-lib/tsconfig.lib.json",
+            "project": "projects/modernweb-common-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modernweb-common-lib/src/test.ts",
+            "tsConfig": "projects/modernweb-common-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/modernweb-common-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modernweb-common-lib/tsconfig.lib.json",
+              "projects/modernweb-common-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "modernweb-ngprime-lib": {
+      "projectType": "library",
+      "root": "projects/modernweb-ngprime-lib",
+      "sourceRoot": "projects/modernweb-ngprime-lib/src",
+      "prefix": "pr",
+      "schematics": {                           
+        "@schematics/angular:component": {      
+          "styleext": "scss"                    
+        }                                       
+      },   
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/modernweb-ngprime-lib/tsconfig.lib.json",
+            "project": "projects/modernweb-ngprime-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modernweb-ngprime-lib/src/test.ts",
+            "tsConfig": "projects/modernweb-ngprime-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/modernweb-ngprime-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modernweb-ngprime-lib/tsconfig.lib.json",
+              "projects/modernweb-ngprime-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "modernweb-clientapp-shell"
+}
