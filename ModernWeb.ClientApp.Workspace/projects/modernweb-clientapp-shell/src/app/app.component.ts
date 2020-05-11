@@ -15,7 +15,6 @@ export class AppComponent implements OnDestroy, AfterViewInit {
   private subscription: Subscription;
 
   constructor(private commonService: CommonService, 
-    private cdef: ChangeDetectorRef,
     private msalService: MsalService,
     private authService:AuthService) { }
   

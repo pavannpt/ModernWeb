@@ -31,7 +31,9 @@
               "projects/modernweb-clientapp-shell/src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-colored/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -99,7 +101,9 @@
               "projects/modernweb-clientapp-shell/src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-colored/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -210,6 +214,42 @@
           }
         }
       }
-    }},
+    },
+    "modernweb-photogallery-lib": {
+      "projectType": "library",
+      "root": "projects/modernweb-photogallery-lib",
+      "sourceRoot": "projects/modernweb-photogallery-lib/src",
+      "prefix": "pgl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/modernweb-photogallery-lib/tsconfig.lib.json",
+            "project": "projects/modernweb-photogallery-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modernweb-photogallery-lib/src/test.ts",
+            "tsConfig": "projects/modernweb-photogallery-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/modernweb-photogallery-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modernweb-photogallery-lib/tsconfig.lib.json",
+              "projects/modernweb-photogallery-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "modernweb-clientapp-shell"
 }

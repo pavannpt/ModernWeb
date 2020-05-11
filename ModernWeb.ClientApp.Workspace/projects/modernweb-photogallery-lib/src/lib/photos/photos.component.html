@@ -1,0 +1,41 @@
+<div class="p-grid p-justify-end innerContainer">
+    <div class="p-col-2">
+        <div class="box"></div>
+    </div>
+    <div class="p-col-1">
+        <div class="box"></div>
+    </div>
+    <div class="p-col-4" style="text-align: right;margin-right: 15px;">
+        <div class="box">
+            <button type="button" (click)="showModalDialog()" pButton icon="pi pi-external-link"
+                label="Upload"></button>
+        </div>
+    </div>
+</div>
+<div>
+    <p-card header="Welcome Pavan" [styleClass]="PhotoAreaStyle">
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+        test<br>
+    </p-card>
+</div>
+<p-dialog header="Godfather I" [(visible)]="displayModal" [modal]="true" height="100" [style]="{width:'60%',height:'75%'}" [baseZIndex]="10000"
+    [draggable]="true" [resizable]="true">
+    <pgl-fileupload></pgl-fileupload>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="displayModal=false" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="displayModal=false" label="No"
+            class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>
