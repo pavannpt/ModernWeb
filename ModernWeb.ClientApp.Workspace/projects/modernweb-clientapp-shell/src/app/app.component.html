@@ -2,7 +2,9 @@
   <common-header (onLogout)="onLoggedOut()" [showLogout]="hideLogin"></common-header>
 </div>
 
-<div class="container containerBody">
-  <router-outlet></router-outlet>
-  <!-- <app-login (LogInEvent)="onLoggedIn()" (LogOutEvent)="onLoggedOut()"></app-login> -->
+<div class="p-grid containerBody">
+  <common-sidemenu></common-sidemenu>
+  <div class="p-col innerContainer">
+    <router-outlet></router-outlet>
+  </div>
 </div>

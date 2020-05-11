@@ -30,6 +30,12 @@
       ],
       "modernweb-ngprime-lib/*": [
         "dist/modernweb-ngprime-lib/*"
+      ],
+      "modernweb-photogallery-lib": [
+        "dist/modernweb-photogallery-lib"
+      ],
+      "modernweb-photogallery-lib/*": [
+        "dist/modernweb-photogallery-lib/*"
       ]
     }
   },

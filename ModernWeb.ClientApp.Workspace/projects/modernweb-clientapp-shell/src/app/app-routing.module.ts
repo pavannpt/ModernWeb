@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MsalGuard } from '@azure/msal-angular';
-import { WorkflowsComponent } from 'modernweb-ngprime-lib';
+import { WorkflowsComponent } from '@modernweb/ngprime-lib';
 
 
 const routes: Routes = [
@@ -16,11 +16,18 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [
       MsalGuard
+    ] 
+  },
+  {
+    path: 'Prime',
+    component: WorkflowsComponent,
+    canActivate: [
+      MsalGuard
     ]
   },
   {
-    path: 'Workflows',
-    component: WorkflowsComponent,
+    path: 'PhotoGallery',
+    loadChildren: () => import('@modernweb/photogallery-lib').then(m=>m.PhotoGalleryModule),
     canActivate: [
       MsalGuard
     ]

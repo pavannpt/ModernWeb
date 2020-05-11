@@ -9,8 +9,9 @@ import { LoginComponent } from './login/login.component';
 import {PanelModule} from 'primeng/panel';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
-import { CommonModule, CommonService } from 'modernweb-common-lib';
-import { NgprimeModule } from 'modernweb-ngprime-lib';
+import {CommonModule, CommonService} from '@modernweb/common-lib';
+import {NgprimeModule} from '@modernweb/ngprime-lib';
+import { PhotoGalleryModule } from '@modernweb/photogallery-lib';
 
 export const protectedResourceMap:[string, string[]][]= [
   ['https://graph.microsoft.com/v1.0/me', ['user.read']],
@@ -30,6 +31,7 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
     AppRoutingModule,
     CommonModule,
     NgprimeModule,
+    PhotoGalleryModule,
     PanelModule,
     MsalModule.forRoot({
       auth: {
