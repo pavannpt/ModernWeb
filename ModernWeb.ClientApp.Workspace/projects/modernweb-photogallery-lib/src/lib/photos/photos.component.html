@@ -14,28 +14,14 @@
 </div>
 <div>
     <p-card header="Welcome Pavan" [styleClass]="PhotoAreaStyle">
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
-        test<br>
+        <div *ngFor="let image of images">
+            <p-card>
+                <img src="{{image}}">
+            </p-card>
+        </div>        
     </p-card>
 </div>
-<p-dialog header="Godfather I" [(visible)]="displayModal" [modal]="true" height="100" [style]="{width:'60%',height:'75%'}" [baseZIndex]="10000"
+<p-dialog header="Upload" [(visible)]="displayModal" [modal]="true" height="100" [style]="{width:'60%',height:'75%'}" [baseZIndex]="10000"
     [draggable]="true" [resizable]="true">
     <pgl-fileupload></pgl-fileupload>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="displayModal=false" label="Yes"></button>
-        <button type="button" pButton icon="pi pi-times" (click)="displayModal=false" label="No"
-            class="ui-button-secondary"></button>
-    </p-footer>
 </p-dialog>

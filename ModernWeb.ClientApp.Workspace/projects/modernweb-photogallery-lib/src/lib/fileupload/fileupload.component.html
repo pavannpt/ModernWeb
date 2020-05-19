@@ -1,8 +1,8 @@
 <div style="height: 100%;">
-    <p-fileUpload name="uploadControl" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+    <p-fileUpload name="uploadControl" url="https://localhost:44346/api/Photogallery" (onUpload)="onUpload($event)" multiple="multiple"
         accept="image/*" maxFileSize="1000000">
         <ng-template pTemplate="content">
-            <ul *ngIf="uploadedFiles.length">
+            <ul *ngIf="uploadedFiles.length"> 
                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
             </ul>
         </ng-template>

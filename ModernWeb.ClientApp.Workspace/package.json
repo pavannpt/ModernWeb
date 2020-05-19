@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build modernweb-clientapp-shell",
+    "build-common": "ng build modernweb-common-lib --watch",
+    "build-ngprime": "ng build modernweb-ngprime-lib --watch",
+    "build-photogallery": "ng build modernweb-photogallery-lib --watch",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

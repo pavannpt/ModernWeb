@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PhotosComponent } from './photos/photos.component';
 import {DialogModule} from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
+import { PhotogalleryService } from './photogallery.service';
 
 @NgModule({
   declarations: [HomeComponent, FileuploadComponent, PhotosComponent],
@@ -23,6 +24,6 @@ import { MessageService } from 'primeng/api';
     DialogModule
   ],  
   exports: [],
-  providers:[MessageService]
+  providers:[MessageService, PhotogalleryService]
 })
 export class PhotoGalleryModule { }

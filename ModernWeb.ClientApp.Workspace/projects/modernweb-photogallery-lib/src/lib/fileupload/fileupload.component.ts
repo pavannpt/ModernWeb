@@ -12,6 +12,7 @@ export class FileuploadComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
+    debugger;
   }
 
   onUpload(event) {
