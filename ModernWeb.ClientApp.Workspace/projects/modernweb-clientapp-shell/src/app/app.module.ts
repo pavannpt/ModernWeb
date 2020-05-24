@@ -15,7 +15,8 @@ import { PhotoGalleryModule } from '@modernweb/photogallery-lib';
 
 export const protectedResourceMap:[string, string[]][]= [
   ['https://graph.microsoft.com/v1.0/me', ['user.read']],
-  ['https://localhost:44308/', [ 'api://e314b8a2-30f8-4306-9aef-c72a3a0b92b8/api-access' ]]
+  ['https://localhost:44308/', [ 'api://e314b8a2-30f8-4306-9aef-c72a3a0b92b8/api-access' ]],
+  ['https://localhost:44346/', [ 'api://1e129799-4ba9-48a8-9686-07b43eef09e1/api-access' ]]
 ];
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -28,7 +29,7 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, 
     CommonModule,
     NgprimeModule,
     PhotoGalleryModule,

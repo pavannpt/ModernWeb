@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotogalleryService } from '../photogallery.service';
 
 @Component({
   selector: 'pgl-photos',
@@ -7,16 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotosComponent implements OnInit {
 
-  PhotoAreaStyle:string;
+  PhotoAreaStyle: string;
   displayModal: boolean;
+  images: String[];
 
-  constructor() { }
+  constructor(private photoGallerySvc: PhotogalleryService) { }
 
   ngOnInit() {
     this.PhotoAreaStyle = "photoarea";
+    debugger;
+    this.LoadImages();
+  }
+
+  LoadImages() {
+    this.photoGallerySvc.LoadImages().subscribe((data: String[]) => {
+      this.images = data;
+    });
   }
 
   showModalDialog() {
     this.displayModal = true;
+  }
+
+  onDialogClose() {
+    if (this.photoGallerySvc.uploadedFiles.length > 0) {
+      this.photoGallerySvc.LoadImages().subscribe((data: String[]) => {
+        this.images = data;
+        this.photoGallerySvc.uploadedFiles = [];
+      });
+    }
   }
 }

@@ -10,6 +10,7 @@ export class WorkflowsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
