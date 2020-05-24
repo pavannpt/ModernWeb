@@ -16,7 +16,8 @@
     <p-card header="Welcome Pavan" [styleClass]="PhotoAreaStyle">
         <div class="row">
                 <div  class="col-md-3  card-1" *ngFor="let image of images">
-                    <img class="card-img-top img-dimensions" [src]="image" />
+                    <img class="card-img-top img-dimensions" [src]="image.url" /><br/>
+                    <button (click)="DeleteImage(image.fileName)">Delete</button>
                 </div>
         </div>
     </p-card>

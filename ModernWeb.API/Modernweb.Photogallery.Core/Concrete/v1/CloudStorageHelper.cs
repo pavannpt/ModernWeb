@@ -3,6 +3,7 @@ using Microsoft.Azure.Storage.Blob;
 using Modernweb.Photogallery.Core.Interface.v1;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -58,6 +59,19 @@ namespace Modernweb.Photogallery.Core.Concrete.v1
             await cloudBlockBlob.UploadFromByteArrayAsync(fileByteArray, 0, fileByteArray.Length);
 
             return cloudBlockBlob;
+        }
+
+        public bool DeleteFile(string fileName)
+        {
+            var cloudBlobContainer = GetImageContainerAsync();
+
+            if (cloudBlobContainer.Result.Exists())
+            {
+                CloudBlob file = cloudBlobContainer.Result.GetBlobReference(fileName);
+                file.DeleteIfExists();
+                return true;
+            }
+            return false;
         }
 
         private async Task<CloudBlobContainer> GetImageContainerAsync()

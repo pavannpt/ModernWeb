@@ -21,6 +21,7 @@ namespace Modernweb.Photogallery.Infrastructure.Concrete.v1
             _cloudStorageHelper = cloudStorageHelper;
         }
 
+
         public Task<IEnumerable<CloudBlockBlob>> ListFilesAsync(string prefix = null, bool includeSnapshots = false)
         {
             return _cloudStorageHelper.ListFilesAsync(prefix, includeSnapshots);
@@ -31,6 +32,10 @@ namespace Modernweb.Photogallery.Infrastructure.Concrete.v1
             return await _cloudStorageHelper.UploadFileAsync(byteArr, blobname);
         }
 
+        public bool DeleteFile(string fileName)
+        {
+            return _cloudStorageHelper.DeleteFile(fileName);
+        }
         #region commented
         //private Bitmap ResizeImage(Image image, Size size, bool preserveAspectRatio = true)
         //{

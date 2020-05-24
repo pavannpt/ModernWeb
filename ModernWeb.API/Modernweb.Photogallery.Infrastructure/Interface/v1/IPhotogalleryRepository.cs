@@ -11,5 +11,6 @@ namespace Modernweb.Photogallery.Infrastructure.Interface.v1
     {
         Task<IEnumerable<CloudBlockBlob>> ListFilesAsync(string prefix = null, bool includeSnapshots = false);
         Task<CloudBlockBlob> UploadFileAsync(byte[] byteArr, string blobname);
+        bool DeleteFile(string fileName);
     }
 }
