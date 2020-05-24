@@ -9,6 +9,7 @@ using Microsoft.Azure.Storage.Blob;
 using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
+using Modernweb.Photogallery.Infrastructure.Models;
 
 namespace ModernWeb.Photogallery.API.Controllers
 {
@@ -27,7 +28,7 @@ namespace ModernWeb.Photogallery.API.Controllers
         [HttpGet]
         public IActionResult Get(string userName)
         {
-            List<string> urls = new List<string>();
+            List<ImageResponse> lstUrlResponse = new List<ImageResponse>();
             var sharedAccessBlobPolicy = new SharedAccessBlobPolicy
             {
                 Permissions = SharedAccessBlobPermissions.Read,
@@ -38,9 +39,12 @@ namespace ModernWeb.Photogallery.API.Controllers
             if (blobs != null && blobs.Result.Count() > 0)
             {
                 string sasToken = blobs.Result.ElementAt(0).Container.GetSharedAccessSignature(sharedAccessBlobPolicy);
-                urls = blobs.Result.Select(b => b.StorageUri.PrimaryUri.AbsoluteUri + sasToken).ToList();
+                lstUrlResponse = blobs.Result.Select(b => new ImageResponse() { 
+                    Url = b.StorageUri.PrimaryUri.AbsoluteUri + sasToken,
+                    FileName = b.Name
+                }).ToList();
             }
-            return Ok(urls);
+            return Ok(lstUrlResponse);
         }
 
         [HttpPut]
@@ -77,9 +81,10 @@ namespace ModernWeb.Photogallery.API.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete()
+        public IActionResult Delete(string fileName)
         {
-            return Ok();
+            fileName = fileName.Replace(" ", "+");
+            return Ok(_photoGalleryRepository.DeleteFile(fileName));
         }
     }
 }
