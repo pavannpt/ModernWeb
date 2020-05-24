@@ -14,14 +14,14 @@
 </div>
 <div>
     <p-card header="Welcome Pavan" [styleClass]="PhotoAreaStyle">
-        <div *ngFor="let image of images">
-            <p-card>
-                <img src="{{image}}">
-            </p-card>
-        </div>        
+        <div class="row">
+                <div  class="col-md-3  card-1" *ngFor="let image of images">
+                    <img class="card-img-top img-dimensions" [src]="image" />
+                </div>
+        </div>
     </p-card>
 </div>
-<p-dialog header="Upload" [(visible)]="displayModal" [modal]="true" height="100" [style]="{width:'60%',height:'75%'}" [baseZIndex]="10000"
-    [draggable]="true" [resizable]="true">
+<p-dialog header="Upload" [(visible)]="displayModal" [modal]="true" height="100" [style]="{width:'60%',height:'75%'}"
+    [baseZIndex]="10000" [draggable]="true" [resizable]="true" (onHide)="onDialogClose()">
     <pgl-fileupload></pgl-fileupload>
 </p-dialog>

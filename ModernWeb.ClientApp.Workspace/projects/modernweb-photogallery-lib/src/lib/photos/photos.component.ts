@@ -8,25 +8,34 @@ import { PhotogalleryService } from '../photogallery.service';
 })
 export class PhotosComponent implements OnInit {
 
-  PhotoAreaStyle:string;
+  PhotoAreaStyle: string;
   displayModal: boolean;
   images: String[];
 
-  constructor(private photoGallerySvc:PhotogalleryService) { }
+  constructor(private photoGallerySvc: PhotogalleryService) { }
 
   ngOnInit() {
     this.PhotoAreaStyle = "photoarea";
+    debugger;
     this.LoadImages();
   }
 
-  LoadImages(){
-    debugger;
-    this.photoGallerySvc.LoadImages().subscribe((data:String[]) => {
+  LoadImages() {
+    this.photoGallerySvc.LoadImages().subscribe((data: String[]) => {
       this.images = data;
-    });  
+    });
   }
 
   showModalDialog() {
     this.displayModal = true;
+  }
+
+  onDialogClose() {
+    if (this.photoGallerySvc.uploadedFiles.length > 0) {
+      this.photoGallerySvc.LoadImages().subscribe((data: String[]) => {
+        this.images = data;
+        this.photoGallerySvc.uploadedFiles = [];
+      });
+    }
   }
 }

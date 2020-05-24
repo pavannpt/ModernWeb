@@ -6,12 +6,15 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Linq;
 using Microsoft.Azure.Storage.Blob;
+using System.Drawing;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ModernWeb.Photogallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PhotogalleryController : ControllerBase
     {
         private readonly IPhotogalleryRepository _photoGalleryRepository;
@@ -22,17 +25,21 @@ namespace ModernWeb.Photogallery.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string userName)
         {
+            List<string> urls = new List<string>();
             var sharedAccessBlobPolicy = new SharedAccessBlobPolicy
             {
                 Permissions = SharedAccessBlobPermissions.Read,
                 SharedAccessExpiryTime = DateTime.Now.AddDays(1)
             };
 
-            var blobs = _photoGalleryRepository.ListFilesAsync();
-            string sasToken = blobs.Result.ElementAt(0).Container.GetSharedAccessSignature(sharedAccessBlobPolicy);
-            var urls = blobs.Result.Select(b => b.StorageUri.PrimaryUri.AbsoluteUri + sasToken);
+            var blobs = _photoGalleryRepository.ListFilesAsync(userName);
+            if (blobs != null && blobs.Result.Count() > 0)
+            {
+                string sasToken = blobs.Result.ElementAt(0).Container.GetSharedAccessSignature(sharedAccessBlobPolicy);
+                urls = blobs.Result.Select(b => b.StorageUri.PrimaryUri.AbsoluteUri + sasToken).ToList();
+            }
             return Ok(urls);
         }
 
@@ -43,7 +50,7 @@ namespace ModernWeb.Photogallery.API.Controllers
         }
 
         [HttpPost]  
-        public IActionResult Post()
+        public IActionResult Post(string userName)
         {
             try
             {
@@ -54,10 +61,10 @@ namespace ModernWeb.Photogallery.API.Controllers
                     {
                         using (var ms = new MemoryStream())
                         {
-                            file.CopyTo(ms);
-                            var fileBytes = ms.ToArray();
-                            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            _photoGalleryRepository.UploadFileAsync(fileBytes, fileName);
+                            file.CopyToAsync(ms);
+                            var byteArr = ms.ToArray();
+                            var fileName = userName + "/" + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                            _photoGalleryRepository.UploadFileAsync(byteArr, fileName);
                         }
                     }
                 }

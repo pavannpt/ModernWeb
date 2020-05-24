@@ -6,11 +6,12 @@ import { ButtonModule } from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PhotosComponent } from './photos/photos.component';
 import {DialogModule} from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
 import { PhotogalleryService } from './photogallery.service';
+import { MsalInterceptor } from '@azure/msal-angular';
 
 @NgModule({
   declarations: [HomeComponent, FileuploadComponent, PhotosComponent],
@@ -24,6 +25,12 @@ import { PhotogalleryService } from './photogallery.service';
     DialogModule
   ],  
   exports: [],
-  providers:[MessageService, PhotogalleryService]
+  providers:[MessageService,
+    PhotogalleryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor, 
+      multi: true
+    }]
 })
 export class PhotoGalleryModule { }
