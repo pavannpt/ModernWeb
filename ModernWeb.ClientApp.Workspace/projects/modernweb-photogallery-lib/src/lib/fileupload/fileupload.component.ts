@@ -10,8 +10,8 @@ import { MsalService } from '@azure/msal-angular';
 })
 export class FileuploadComponent implements OnInit {
 
-  uploadUrl:string = "https://localhost:44346/api/Photogallery?userName=";
-  //uploadUrl:string = "https://modernwebphotogalleryapi.azurewebsites.net/api/Photogallery?userName=";
+  //uploadUrl:string = "https://localhost:44346/api/Photogallery?userName=";
+  uploadUrl:string = "https://modernwebphotogalleryapi.azurewebsites.net/api/Photogallery?userName=";
   constructor(private messageService: MessageService, public photoGallerySvc:PhotogalleryService, private _msalService: MsalService) { }
 
   ngOnInit() {
