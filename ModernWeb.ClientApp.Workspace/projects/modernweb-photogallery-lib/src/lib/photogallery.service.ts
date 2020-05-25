@@ -6,8 +6,8 @@ import { MsalService } from '@azure/msal-angular';
   providedIn: 'root'
 })
 export class PhotogalleryService {
-  url = "https://localhost:44346/api/photogallery?userName=";
-  //url = "https://modernwebphotogalleryapi.azurewebsites.net/api/photogallery?userName=";
+  //url = "https://localhost:44346/api/photogallery?userName=";
+  url = "https://modernwebphotogalleryapi.azurewebsites.net/api/photogallery?userName=";
   public uploadedFiles: any[] = [];
 
   constructor(private http:HttpClient, private msalSvc:MsalService) { }
