@@ -6,23 +6,23 @@ db.createCollection("PRIME_WORKFLOW_CONFIG", {
             properties: {
                 WorkflowConfigId: {
                     bsonType: "int",
-                    description: ""
+                    description: "must be int and non empty"
                 },
                 WorkflowId: {
                     bsonType: "int",
-                    description: ""
+                    description: "must be int and non empty"
                 },
                 Recipient: {
                     bsonType: "string",
-                    description: ""
+                    description: "must be string and can contain M, P, C or R"
                 },
                 LOBID: {
                     bsonType: "int",
-                    description: ""
+                    description: "must be int and can be empty"
                 },
                 DocumentType: {
                     bsonType: "string",
-                    description: ""
+                    description: "must be string and non empty"
                 },
                 PrintPreference: {
                     bsonType: "string",
