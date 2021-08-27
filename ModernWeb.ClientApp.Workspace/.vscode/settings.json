@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/72ad061c-f132-498f-addb-e2efec16b6db/resourceGroups/ModernWeb/providers/Microsoft.Web/sites/modernweb1",
-    "appService.deploySubpath": "dist\\modernweb-clientapp-shell\\assets"
-}
